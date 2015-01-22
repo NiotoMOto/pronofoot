@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{title}</title>
+    <link rel='stylesheet' href='/public/stylesheets/css/app.css' />
+    <!-- bower:css -->
+    <link rel='stylesheet' href='../bower_components/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='../bower_components/font-awesome/css/font-awesome.css' />
+    <!-- endbower -->
+  </head>
+  <body>
+    <h1>{title}</h1>
+        {+content}
+            This is the base content.
+        {/content}
+
+  <!-- bower:js -->
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <!-- endbower -->
+  <script src="/public/scripts/script.js"></script>
+  </body>
+<!--
+{session}
+-->
+</html>

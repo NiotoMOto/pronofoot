@@ -1,0 +1,67 @@
+<div class="jumbotron">
+    <h1>PronoFoot backo</h1>
+    <p class="lead">
+    </p>
+</div>
+<button class="btn btn-primary" ng-click="open()" type="button">Open</button>
+<div class="row marketing">
+    <div class="row">
+        <ui-select ng-model="ligue.selected"
+        theme="bootstrap"
+        reset-search-input="false">
+        <ui-select-match placeholder="Enter an address...">{{$select.selected.caption}}</ui-select-match>
+        <ui-select-choices repeat="ligue as ligue in ligues track by $index | propsFilter : {ligue.caption: $select.search}">
+        <div ng-bind-html="ligue.caption | highlight: $select.search"></div>
+        </ui-select-choices>
+        </ui-select>
+    </div>
+    
+    
+    <div class="row">
+        <table class="table">
+            <caption><strong>League</strong> {{ligue.selected.caption}}</caption>
+            <thead>
+                <tr>
+                    <td>Equipe 1</td>
+                    <td>Equipe 2</td>
+                    <td>Match  day</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><button ng-if="bets.length > 1" ng-click="saveBets()" class="btn btn-info">Tout enregistrer</button></td>
+                </tr>
+                <tr ng-repeat="match in matchs">
+                    <td><label  ng-class="{'text-success': bet1, 'text-danger' : bet2}"  for="{{match.id}}1">{{match.homeTeam}}</label> <input ng-model="match.prono" ng-value="match.homeTeam" id="{{match.id}}1" name="{{match.id}}" ng-click="bet1 = true; addBet(match,match.homeTeam)" class="pull-right" type="radio"/></td>
+                    <td><label ng-class="{'text-success': bet2, 'text-danger' : bet1}" for="{{match.id}}2">{{match.awayTeam}}</label> <input ng-model="match.prono" ng-value="match.awayTeam" name="{{match.id}}" id="{{match.id}}2" ng-click="bet2 = true; addBet(match,match.awayTeam)" class="pull-right" type="radio"/></td>
+                    <td><span>{{match.date | date : 'shortDate' }}</span></td>
+                    <td><button ng-click="saveBet(match,match.prono)" ng-if="bet1 || bet2" class="btn btn-primary">Enregister</button></td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                    <td><button ng-if="bets.length > 1" ng-click="saveBets()" class="btn btn-info">Tout enregistrer</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+    <table class="table">
+        <caption>Pronostics</caption>
+        <thead>
+            <tr>
+                <th>Equipe 2</th>
+                <th>Equipe 2</th>
+                <th>Pronostic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="prono in pronos">
+                <td>{{prono.homeTeam}}</td>
+                <td>{{prono.awayTeam}}</td>
+                <td>{{prono.pronoTeam}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
